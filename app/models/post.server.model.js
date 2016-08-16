@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 var PostSchema = new mongoose.Schema({
 	title:String,
 	content:String,
+	summary:String,
 	tag:String,
 	category:String,
 	author:String,

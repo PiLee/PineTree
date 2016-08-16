@@ -16,9 +16,10 @@ module.exports={
 		//var pageSize = pageSize || 10;
     	//var pageStart = pageStart || 1;
 		Post
-		.find({}/*,{content:0}*/)
+		.find({},{content:0})
 		//.skip((pageStart-1)*pageSize)
 		//.limit(pageSize)
+		.sort({createTime:-1})
 		.exec(function(err,docs){
 			if(err) return next(err);
 			if(docs){
