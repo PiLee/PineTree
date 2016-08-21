@@ -17,9 +17,15 @@ module.exports=function(app){
 	// 发布文章
 	app.route('/api/post')
 		.post(PostController.create);
+		
+	// 删除文章
+	app.route('/api/ariticle-remove/:articleId')
+		.post(PostController.remove);
 
 	// 编辑文章
 	app.route('/api/ariticle-update/:articleId')
 		.post(PostController.update);
+
+	
 };
 

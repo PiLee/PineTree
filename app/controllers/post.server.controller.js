@@ -45,13 +45,13 @@ module.exports={
 			res.json(doc);
 		});
 	},
-	remove: function(id,callback){
-		if(!id) callback(err);
+	remove: function(req, res, next){
+		var id = req.params.articleId;
 		Post
 		.findOne({_id: id})
 		.remove(function(err, doc){
-			if(err) return callback(err);
-			callback(null,doc);
+			if(err) return next(err);
+			res.json(doc);
 		});
-	  }
+	}
 }
