@@ -17,5 +17,9 @@ module.exports=function(app){
 	// 发布文章
 	app.route('/api/post')
 		.post(PostController.create);
+
+	// 编辑文章
+	app.route('/api/ariticle-update/:articleId')
+		.post(PostController.update);
 };
 

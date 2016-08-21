@@ -27,7 +27,6 @@ module.exports={
 			}
 		});
 	},
-
 	get: function(req, res, next){
 		Post
 		.findOne({_id: req.params.articleId})
@@ -35,20 +34,22 @@ module.exports={
 			if(err) return next(err);
 			res.json(doc);
 		});
-	  },
+	},
+	update: function(req, res, next){
+		var id = req.params.articleId;
+		var info = req.body;
+		Post
+		.update({_id: id},{$set: {title:info.title,content:info.content,summary:info.summary}})
+		.exec(function(err, doc){
+			if(err) return next(err);
+			res.json(doc);
+		});
+	},
 	remove: function(id,callback){
 		if(!id) callback(err);
 		Post
 		.findOne({_id: id})
 		.remove(function(err, doc){
-			if(err) return callback(err);
-			callback(null,doc);
-		});
-	  },
-	update: function(id,info,callback){
-		if(!id) callback(err);
-		Post
-		.update({_id: id},{$set: {key:info.key,category:info.category,title:info.title,content:info.content}},function(err, doc){
 			if(err) return callback(err);
 			callback(null,doc);
 		});
