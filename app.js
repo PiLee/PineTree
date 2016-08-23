@@ -37,33 +37,13 @@ app.use(session({
 app.use(flash());
 
 
-uploadMultiparty = multiparty({
-    uploadDir: './public/uploads'
-});
-
-app.route('/admin/uploads').post(uploadMultiparty,function(req, res) {
-    res.json(req.files.file)
-});
-
 app.use(function(req, res, next){  
-
-  /*var url = req.originalUrl.indexOf("/admin"); 
-
-  //简单地定义一个登录拦截器  
- if (url===0 && !req.session.user) {  
-      req.flash('error', '请先登录!');  
-      return res.redirect("/login");  
-  }  */
-
-  res.locals.user = req.session.user;  
-    
   var error = req.flash('error'); 
   var success = req.flash('success');  
+  res.locals.user = req.session.user;  
   res.locals.error = error.length?error:null;
   res.locals.success = success.length?success:null;
-
   res.locals.session = req.session; 
-
   next();  
 });  
 
